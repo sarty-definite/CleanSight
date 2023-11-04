@@ -1,6 +1,7 @@
 import taipy as tp
 from taipy import Config, Core, Gui
 from taipy.gui import Html
+from taipy.gui import navigate
 ################################################################
 #            Configure application                             #
 ################################################################
@@ -29,8 +30,8 @@ roles={
   "user3": ["role1", "role2", "TAIPY_ADMIN"]
 }
 passwords={
-  "user1@gmail.com": "eSwebyvpEElWbZNTNqpW7rNQPDPyJSm",
-  "user2@gmail.com": "JQlZ4IXorPcJYvMLFWE/Gu52XNfavMe"
+  "user1@gmail.com": "abcd",
+  "user2@gmail.com": "efgh"
 }
 # authenticator = Authenticator("taipy", roles=roles)
 def submit_scenario(state):
@@ -44,7 +45,22 @@ def submit_login(state):
     global Password
     Email=state.Email
     Password=state.Password
+    if Email in passwords and passwords[Email] == Password:
+        print("Login successful")
+        navigate(state, "feed")
+    else:
+        print("Login failed")
+    #     Gui(page=Html('''
+    # <div style="postion:fixed; bottom:0;right:0">
+    # Login Failed
+    # </div>''')).run()
 
+
+def login_failed():
+    Gui(page=Html('''
+    <div style="postion:fixed; bottom:0;right:0">
+    Login Failed
+    </div>''')).run()
 
 page = Html('''
     <!doctype html>
@@ -53,10 +69,7 @@ page = Html('''
 
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <meta name="description" content=""></meta>
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors"></meta>
-    <meta name="generator" content="Hugo 0.118.2"></meta>
-    <title>Signin Template · Bootstrap v5.3</title>
+    <title>CleanSight</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/"></link>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"></link>

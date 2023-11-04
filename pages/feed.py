@@ -7,10 +7,12 @@ frame = Html('''
     <head>
         <meta charset="utf-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <title>Bootstrap demo</title>
+        <title></title>
     </head>
     <body>
-        <h1>Hello, world!</h1>
+        <div style="height:90vh;width:100%">
+        <iframe style="height:100%;width:100%" src="https://negativediscretetraining.sarthakgoelart.repl.co/"></iframe>
+        </div>
     </body>
     </html>
     ''')
