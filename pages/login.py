@@ -181,7 +181,6 @@ if __name__ == "__main__":
     #            Instantiate and run Core service                  #
     ################################################################
     Core().run()
-    print("hello")
     ################################################################
     #            Manage scenarios and data nodes                   #
     ################################################################
@@ -189,6 +188,9 @@ if __name__ == "__main__":
     ################################################################
     #            Instantiate and run Gui service                   #
     ################################################################
-    
-    Gui(page).run(stylekit=stylekit, update_interval=0.1)
+    pages = {
+     "/": page,
+     "feed": frame,
+     }
+    Gui(pages=pages).run(stylekit=stylekit, update_interval=0.1)
 
