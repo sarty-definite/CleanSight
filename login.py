@@ -1,8 +1,6 @@
 import taipy as tp
 from taipy import Config, Core, Gui
 from taipy.gui import Html
-
-
 ################################################################
 #            Configure application                             #
 ################################################################
@@ -25,14 +23,29 @@ scenario_cfg = Config.configure_scenario("scenario", task_configs=[build_msg_tas
 
 input_name = "Taipy"
 message = None
-
-
+roles={
+  "user1": ["role1", "TAIPY_READER"],
+  "user2": ["role2", "TAIPY_ADMIN"],
+  "user3": ["role1", "role2", "TAIPY_ADMIN"]
+}
+passwords={
+  "user1@gmail.com": "eSwebyvpEElWbZNTNqpW7rNQPDPyJSm",
+  "user2@gmail.com": "JQlZ4IXorPcJYvMLFWE/Gu52XNfavMe"
+}
+# authenticator = Authenticator("taipy", roles=roles)
 def submit_scenario(state):
     state.scenario.input_name.write(state.input_name)
     state.scenario.submit()
     state.message = scenario.message.read()
 Email=""
 Password=""
+def submit_login(state):
+    global Email
+    global Password
+    Email=state.Email
+    Password=state.Password
+
+
 page = Html('''
     <!doctype html>
 <html lang="en" data-bs-theme="auto">
@@ -147,13 +160,12 @@ page = Html('''
     </div>
     <div class="form-floating">
       <label style="font-size:1.3rem" for="floatingPassword">Password</label><br></br>
-      <taipy:input password >{Password}</taipy:input>
+      <taipy:input  password >{Password}</taipy:input>
     </div>
-    <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+    <taipy:button style="Margin-top:1rem" on_action="submit_login">Log In</taipy:button>
 
   </form>
   </main>
-  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
     </body>
 </html>
@@ -169,7 +181,7 @@ if __name__ == "__main__":
     #            Instantiate and run Core service                  #
     ################################################################
     Core().run()
-
+    print("hello")
     ################################################################
     #            Manage scenarios and data nodes                   #
     ################################################################
@@ -178,5 +190,5 @@ if __name__ == "__main__":
     #            Instantiate and run Gui service                   #
     ################################################################
     
-    Gui(page).run(stylekit=stylekit)
+    Gui(page).run(stylekit=stylekit, update_interval=0.1)
 
