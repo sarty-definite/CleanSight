@@ -37,4 +37,4 @@ https://www.youtube.com/watch?v=_jrCYGrMTVQ
 - Mongo DB
 - Github
 - Replit 
-- Go Daddy Domain Registry
+- Go Daddy Domain Registry (cleansight.co)
