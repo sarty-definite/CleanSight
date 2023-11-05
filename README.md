@@ -1,4 +1,5 @@
 # CleanSight
+![screenshot](./logo.png)
 ## Problem Statement 
 Tourist spots at inaccessible areas are very inefficient to clean. One of the main issue being Fuel Expensive and spotting out the garbage which can eventually lead to natural calamity like Landslides due to soil erosion
 ## Our Solution 
@@ -14,6 +15,11 @@ We created a software cum hardware solution that takes visual insights through a
 - Python 
 - IOT
 
+## Installation
+- Clone the repository
+- Install the dependencies by pip install -r requirements.txt
+- Run the script by taipy run main.py
+
 ## Team Members
 - Sarthak Goel : Backend Developer
 - Varun Sharma : UAV Researcher
@@ -27,3 +33,8 @@ https://www.canva.com/design/DAFzP0BjYK8/lK4lXplGNUfQZRrxbVXSjw/edit?utm_content
 https://www.youtube.com/watch?v=_jrCYGrMTVQ
 
 ## Track Prizes 
+- Taipy 
+- Mongo DB
+- Github
+- Replit 
+- Go Daddy Domain Registry
