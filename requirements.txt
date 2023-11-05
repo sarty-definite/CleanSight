@@ -1,2 +1,6 @@
 taipy
 numpy 
+requests
+pandas
+plotly
+json
