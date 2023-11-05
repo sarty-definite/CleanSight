@@ -2,6 +2,7 @@ import taipy as tp
 from taipy import Config, Core, Gui
 from taipy.gui import Html
 from taipy.gui import navigate
+from taipy.gui import notify
 ################################################################
 #            Configure application                             #
 ################################################################
@@ -30,8 +31,8 @@ roles={
   "user3": ["role1", "role2", "TAIPY_ADMIN"]
 }
 passwords={
-  "user1@gmail.com": "abcd",
-  "user2@gmail.com": "efgh"
+  "user1@gmail.com": "bytethecookie",
+  "user2@gmail.com": "taipy"
 }
 # authenticator = Authenticator("taipy", roles=roles)
 def submit_scenario(state):
@@ -40,20 +41,20 @@ def submit_scenario(state):
     state.message = scenario.message.read()
 Email=""
 Password=""
+value=""
 def submit_login(state):
     global Email
     global Password
     Email=state.Email
     Password=state.Password
+    value=state.value
     if Email in passwords and passwords[Email] == Password:
         print("Login successful")
-        navigate(state, "feed")
+        notify(state, notification_type="success", message="Login Successful")
+        navigate(state, "Map")
     else:
         print("Login failed")
-    #     Gui(page=Html('''
-    # <div style="postion:fixed; bottom:0;right:0">
-    # Login Failed
-    # </div>''')).run()
+        notify(state, notification_type="error", message="Login failed")
 
 
 def login_failed():
@@ -175,7 +176,8 @@ page = Html('''
       <label style="font-size:1.3rem" for="floatingPassword">Password</label><br></br>
       <taipy:input  password >{Password}</taipy:input>
     </div>
-    <taipy:button style="Margin-top:1rem" on_action="submit_login">Log In</taipy:button>
+    <taipy:button style="Margin-top:1rem" on_action="submit_login">Log In</taipy:button><br></br>
+
 
   </form>
   </main>
@@ -201,9 +203,5 @@ if __name__ == "__main__":
     ################################################################
     #            Instantiate and run Gui service                   #
     ################################################################
-    pages = {
-     "/": page,
-     "feed": frame,
-     }
-    Gui(pages=pages).run(stylekit=stylekit, update_interval=0.1)
+    Gui(page).run(stylekit=stylekit, update_interval=0.1)
 
