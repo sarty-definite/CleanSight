@@ -36,7 +36,7 @@ map_md = Html('''
 <body>
     <div class="container text-center">
     <h1>GeoLocation Heatmap</h1>
-    <taipy:button styleon_action="showfig">Show Heatmap</taipy:button>
+    <taipy:button style on_action="showfig">Show Heatmap</taipy:button>
     <taipy:button  on_action="button_pressed" >Deploy the Scan</taipy:button>
     </div>
 </body>
