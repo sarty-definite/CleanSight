@@ -6,19 +6,18 @@ import pandas as pd
 import plotly.express as px
 import webbrowser
 
+url = "https://ap-south-1.aws.data.mongodb-api.com/app/triggers-lvqxp/endpoint/TrashTrack"
+# url = "https://data.mongodb-api.com/app/triggers-oiqrx/endpoint/trashLocation"
+response = requests.request("GET", url=url)
+a = json.loads(response.text)
+df = pd.DataFrame.from_records(a)
+fig = px.density_mapbox(df, lat = 'lat', lon = 'long', 
+                    radius = 10,
+                    center = dict(lat =28.718411, lon = 77.063736),
+                    zoom = 10,
+                    mapbox_style = 'stamen-terrain')
 
 def showfig():
-    url = "https://ap-south-1.aws.data.mongodb-api.com/app/triggers-lvqxp/endpoint/TrashTrack"
-# url = "https://data.mongodb-api.com/app/triggers-oiqrx/endpoint/trashLocation"
-    response = requests.request("GET", url=url)
-
-    a = json.loads(response.text)
-    df = pd.DataFrame.from_records(a)
-    fig = px.density_mapbox(df, lat = 'lat', lon = 'long', 
-                        radius = 10,
-                        center = dict(lat =28.718411, lon = 77.063736),
-                        zoom = 10,
-                        mapbox_style = 'stamen-terrain')
     fig.show()
 def button_pressed(state):
     url="https://negativediscretetraining.sarthakgoelart.repl.co/"
